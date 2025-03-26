@@ -1,0 +1,63 @@
+1. Create "countries.json" File
+    #path: src/main/resources/countries.json
+
+2. SQL Query for PostgreSQL Table
+    #Create a new db "testdb"
+    #Run the following SQL query:
+    CREATE TABLE countries (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(100) NOT NULL,
+        code VARCHAR(10) NOT NULL UNIQUE
+    );
+
+3. Setup Spring Boot Project
+    #Update your pom.xml with JDBC, PostgreSQL, and OpenAPI dependencies:
+
+4. Configure application.properties
+    #path: src/main/resources/application.properties
+
+5. Create Country(CountryModel) Model
+     #package: com.dev.demo.model
+
+6. Create Repository(CountryRepo) Using JDBC
+    #package com.example.demo.repository
+
+7. Create Service(CountryService) to Load "countries.json"
+    #package: com.dev.demo.service
+
+8. Create Controller(CountryController) with OpenAPI
+    #package com.example.demo.controller
+
+9. Run the Application
+    1.Start PostgreSQL and create your database:
+        CREATE DATABASE testdb;
+    2.Run the Spring Boot application:
+        mvn spring-boot:run
+            OR
+        Run DemoApplication
+    3.Insert "countries.json" data into PostgreSQL:
+        curl -X POST http://localhost:8080/api/countries/load
+            OR
+        - http://localhost:8080/swagger-ui/index.html#/
+        - Click on: POST --> Execute
+        - Refresh DB and Execute "countries"
+    4.Retrieve all stored countries:
+        curl -X GET http://localhost:8080/api/countries
+            OR
+        - http://localhost:8080/swagger-ui/index.html#/
+        - Click on: GET --> Execute
+        - Check the response
+
+#Optional. Access Swagger UI
+    #You can also add the following inside "application.properties", instead of "pom.xml"
+        # Enable Swagger UI
+        springdoc.api-docs.enabled=true
+        springdoc.swagger-ui.path=/swagger-ui.html
+
+    #After running the application, open Swagger UI path:
+        http://localhost:8080/swagger-ui.html
+
+    #It'll show:
+        POST /api/countries/load → Load countries from JSON
+        GET /api/countries → Retrieve all stored countries
+
