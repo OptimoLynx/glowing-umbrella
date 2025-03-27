@@ -4,6 +4,7 @@ import com.dev.demo.model.Country;
 import com.dev.demo.repository.CountryRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,7 @@ public class CountryService {
         this.objectMapper = new ObjectMapper();
     }
 
+    @Autowired
     public void loadCountriesFromJson() {
         try {
             InputStream inputStream = new ClassPathResource("countries.json").getInputStream();
