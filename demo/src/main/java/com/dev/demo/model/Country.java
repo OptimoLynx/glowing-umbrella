@@ -1,5 +1,8 @@
 package com.dev.demo.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Country {
     private String name;
     private String code;
