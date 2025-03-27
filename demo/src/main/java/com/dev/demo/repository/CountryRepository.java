@@ -1,6 +1,7 @@
 package com.dev.demo.repository;
 
 import com.dev.demo.model.Country;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +12,7 @@ public class CountryRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
+    @Autowired
     public CountryRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
